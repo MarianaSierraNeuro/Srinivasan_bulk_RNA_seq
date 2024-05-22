@@ -1,0 +1,58 @@
+#____
+#Title: "SCA1 Excercise vs Control Mice"
+#Authors: Sharan Srinivasan, Mariana Sierra
+#date: "05/20/2024"
+#____
+
+# script to perform differential gene expression analysis using DESeq2 package
+setwd("/Users/marianasierra/Desktop/srinivasan_bulk_rna_seq")
+
+# load libraries
+install.packages("BiocManager")
+BiocManager::install(version = "3.18")
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("airway")
+library(tidyverse)
+library(airway)
+library(ggplot2)
+library(pheatmap)
+library(dplyr)
+library(ggrepel)
+library(RColorBrewer)
+
+### Step 1: preparing count data ----------------
+#FIX Files: this is with suggested code from the core
+
+# Read in the file. Don't set row names yet
+# Note if using R < 4.0.0, set stringsAsFactors = FALSE in read.delim
+data <- read.delim("gene_expected_count.annot.txt")
+# Deal with genes that don't have annotated gene symbols (external_gene_name)
+# Use ENSEMBL ID if gene symbol not available
+data$external_gene_name <- ifelse(
+  data$external_gene_name == ".",
+  data$gene_id,
+  data$external_gene_name
+)
+# Deal with duplicated gene symbols
+# Combine gene symbol with ENSEMBL ID if non-unique
+data$external_gene_name <- ifelse(
+  duplicated(data$external_gene_name),
+  paste(data$external_gene_name, data$gene_id, sep="_"),
+  data$external_gene_name
+)
+# Then we can use the gene symbol column as the row names,
+# Set gene names as a separate column, not as row names
+# Set gene names as a separate column, not as row names
+gene_names <- data$external_gene_name
+
+# Subset the count data for further analysis
+count.data <- data[,5:ncol(data)] # All columns after 4 are count data
+
+# Add a column named "gene" to count.data containing gene names
+count.data <- cbind(gene = gene_names, count.data)
+
+# Now count.data has "gene" as the first column containing gene names
+head(count.data)
+
+
