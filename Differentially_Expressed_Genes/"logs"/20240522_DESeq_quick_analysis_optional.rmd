@@ -1,5 +1,4 @@
 ###following reading_count_data_optional
-#Reference Tutorial: https://www.youtube.com/watch?v=5z_1ziS0-5w 
 #____
 #Title: "SCA1 Excercise vs Control Mice"
 #Authors: Sharan Srinivasan, Mariana Sierra
