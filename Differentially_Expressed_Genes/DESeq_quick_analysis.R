@@ -1,23 +1,14 @@
 ###following reading_count_data_optional
-#____
+
 #Title: "SCA1 Excercise vs Control Mice"
 #Authors: Sharan Srinivasan, Mariana Sierra
-#date: "05/20/2024"
-#output = html_document
-#____
-
-#'''{r setup, include = FALSE}
-#knit::opts_chunk$set(echo=TRUE)
-#false = FALSE
-#true = TRUE
-#'''
+#date: 05/20/2024
 
 #Install Packages
-#'''{r, eval=false}
 install.packages(c('dyplr','ggplots','ggplot2','ggrepel','RColorBrewer','airway'))
 BiocManager::install(c('limma','DESeq2','AnnotationDbi','org.Mm.eg.db','ReportingTools','Go.db','GOstats','pathview','gage','gageData','select'))
-#'''
-#'''{r}
+
+#install libraries 
 library(DESeq2)
 library(dplyr)
 library(ggplot2)
@@ -27,7 +18,6 @@ library(RColorBrewer)
 library(airway)
 library(tidyverse)
 
-#'''
 
 ###0. Treatment Information/Metadata ----
 
