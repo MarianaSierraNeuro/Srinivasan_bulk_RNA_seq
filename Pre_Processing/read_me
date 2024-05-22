@@ -1,1 +1,5 @@
+preprocessing files: 
 
+[Optional Steps - these are more quick and dirty analysis]
+1. Look at the quality of the count data in many forms (histogram, barplots, density plots ect.
+2. DESeq2 quick analysis (I think it is sufficient for DEG analysis, but ideally you'd want to go through the pipeline of actually generating the UMAPs 
